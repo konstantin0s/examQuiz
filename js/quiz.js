@@ -26,12 +26,16 @@ question = questions[pos][0];
 }
 
 function checkAnswer() {
-  choices = document.getElementById("choices");
-  for (var i=0; i<choices.length; i++) {
+  choices = document.getElementsByName("choices");
+  for (var i=0; i < choices.length; i++) {
     if(choices[i].checked) {
       choice = choices[i].value;
     }
   }
+  if (choice == questions[pos][4]) {
+    correct++;
+  }
+  pos++;
 }
 
 window.addEventListener("load", renderQuestion, false);
