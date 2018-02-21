@@ -3,7 +3,7 @@ var questions = [
      ["What is 10 + 4?", "12", "14", "16", "B"],
      ["What is 20 - 9?", "7", "13", "11", "C"],
      ["What is 7 x 3?", "21", "24", "25", "A"],
-     ["What is 8 / 2?", "10", "2", "14", "C"]
+     ["What is 8 / 2?", "10", "2", "4", "C"]
 
 ];
 
@@ -13,6 +13,13 @@ function _(x) {
 }
 function renderQuestion() {
   test = _("test");
+  if(pos >= questions.length) {
+    test.innerHTML = "<h2> You got "+correct+" of "+questions.length+" questions correct</h2>";
+    _("test_status").innerHTML = "Test Completed";
+    pos = 0;
+    correct = 0;
+    return false;
+  }
   _("test_status").innerHTML = "Question "+(pos+1)+ " of " + questions.length;
 question = questions[pos][0];
   chA = questions[pos][1];
@@ -36,6 +43,7 @@ function checkAnswer() {
     correct++;
   }
   pos++;
+  renderQuestion();
 }
 
 window.addEventListener("load", renderQuestion, false);
